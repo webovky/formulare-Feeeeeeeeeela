@@ -1,44 +1,53 @@
 from . import app
-from flask import render_template, request, redirect, url_for, session
-import functools
-
-# from werkzeug.security import check_password_hash
-
-slova = ("Super", "Perfekt", "Úža", "Flask")
+from flask import render_template, request, session
 
 
-def prihlasit(function):
-    @functools.wraps(function)
-    def wrapper(*args, **kwargs):
-        if "user" in session:
-            return function(*args, **kwargs)
-        else:
-            return redirect(url_for("login", url=request.path))
 
-    return wrapper
-
-
-@app.route("/", methods=["GET"])
+@app.route('/', methods=["GET", "POST"])
 def index():
-    return render_template("base.html.j2")
+    name = request.form.get("name")
+    if name:
+        session["name"]=name
+    else:
+        name = "Uživatel bez jména"
+    title = 'Index'
+    return render_template('base.html.j2', title=title, name=name)
 
 
-@app.route("/info/")
+@app.route('/info/')
 def info():
-    return render_template("info.html.j2")
+    title = 'Info'
+    return render_template('info.html.j2', title=title)
+
+@app.route('/Květák')
+def kvetak():
+    title = 'Květák'
+    return render_template('kvetak.html.j2', title=title)
+
+@app.route('/Kapusta')
+def kapusta():
+    title = 'Kapusta'
+    return render_template('kapusta.html.j2', title=title)
+
+@app.route('/Banány')
+def banany():
+    title = 'Banány'
+    return render_template('banany.html.j2', title=title)
+
+@app.route('/Formule', methods=["GET", "POST"])
+def formulky():
+    label = request.form.get("text")
+    if label:
+        try:
+            result = eval(label)
+        except:
+            result = "Error :)"
+    else:
+        result = ""
+    title = 'Formule'
+    return render_template('formula.html.j2', title=title, result=result)
 
 
-@app.route("/abc/")
-def abc():
-    return render_template("abc.html.j2", slova=slova)
-
-
-@app.route("/text/")
-def text():
-    return """
-
-<h1>Text</h1>
-
-<p>toto je text</p>
-
-"""
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html.j2')
