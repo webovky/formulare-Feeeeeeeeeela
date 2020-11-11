@@ -34,7 +34,7 @@ def banany():
     title = 'Banány'
     return render_template('banany.html.j2', title=title)
 
-@app.route('/Formule', methods=["GET", "POST"])
+@app.route('/Kalkulačka', methods=["GET", "POST"])
 def formulky():
     label = request.form.get("text")
     if label:
@@ -44,7 +44,7 @@ def formulky():
             result = "Error :)"
     else:
         result = ""
-    title = 'Formule'
+    title = 'Kalkulačka'
     return render_template('formula.html.j2', title=title, result=result)
 
 
