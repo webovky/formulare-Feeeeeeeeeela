@@ -1,3 +1,4 @@
 # formulare-Feeeeeeeeeela
 
-* Protože jsem chtěl pokračovat na svém předešlém úkolu ze své stránky, tak jsem si dovolil přepsat celé repo a dát tam pouze můj výtvor.
+* jméno uživatele může být jakékoliv krom, ale nesmí být prázdný string
+* heslo je zatím univerzálně nastaveno na "password"
