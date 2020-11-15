@@ -31,33 +31,25 @@
         <a class="nav-link active" href="{{url_for('banany')}}">Banány</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{url_for('formulky')}}">Kalkulačka</a>
+        <a class="nav-link active" href="{{url_for('formulky')}}">Kalkulačka</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Dark web</a>
       </li>
     </ul>
   </div>
-  <p class="name">Uživatel: {{session['name']}}</p>
+  <span class="navbar-text">
+      Uživatel: {{session['user']}}
+      <button onclick="window.location = 'http://localhost:55555/login'" type="submit" class="btn btn-dark">Odhlášení</button>
+    </span>
 </nav>
 <a name="top"></a>
 
-
-
-
-
 {% block obsah %}
 <div class="container">
-  <h2 class="rainbow">Zadej své jmééééno!!!!</h2>
+  <h2 class="rainbow">Toto je hlavní strana</h2>
 </div>
-<br>
 
-<form action="{{url_for('index')}}" method="POST">
-<input class="centering" type="text" name="name">
-<br>
-<input class="centering" type="submit" value="Submit">
-</form>
-<br>
 {% endblock obsah%}
 
 <footer>
