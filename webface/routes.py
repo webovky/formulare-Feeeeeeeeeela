@@ -72,7 +72,6 @@ def login():
 @app.before_request
 def before_request():
     g.user = None
-
     if 'user' in session:
         g.user = session['user']
 
@@ -80,7 +79,6 @@ def before_request():
 def dropsession():
     session.pop('user', None)
     return render_template('login.html.j2')
-
 
 @app.errorhandler(404)
 def page_not_found(e):
