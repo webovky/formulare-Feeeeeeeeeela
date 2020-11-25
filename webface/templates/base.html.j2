@@ -39,8 +39,13 @@
     </ul>
   </div>
   <span class="navbar-text">
+      {% if session["user"] %}
       Uživatel: {{session['user']}}
-      <button onclick="window.location = 'http://localhost:55555/login'" type="submit" class="btn btn-dark">Odhlášení</button>
+      <a class="btn btn-dark" href="{{url_for('logout')}}">Odhlášení</a> 
+      {% else %}
+      <a class="btn btn-dark" href="{{url_for('login')}}">Login</a>
+      <a class="btn btn-dark" href="{{url_for('register')}}">Register</a>
+      {% endif %}
     </span>
 </nav>
 <a name="top"></a>
